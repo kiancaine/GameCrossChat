@@ -1,0 +1,27 @@
+{
+  "name": "gamecrosschat",
+  "version": "0.1.0",
+  "description": "Enabling global chat across multiple platforms and games",
+  "main": "init.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kiancaine/GameCrossChat.git"
+  },
+  "keywords": [
+    "CrossChat"
+  ],
+  "author": "ShipMasterCaine (Kian Caine)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kiancaine/GameCrossChat/issues"
+  },
+  "homepage": "https://github.com/kiancaine/GameCrossChat#readme",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "discord.js": "^12.2.0",
+    "ws": "^7.3.1"
+  }
+}
