@@ -19,6 +19,12 @@ console.log(chalk.yellow("[" + symbols.wait + "] Loading dependencies and module
 
 const webSocket = require("ws");
 const http = require("http");
+const discord = require("discord.js");
+var discordEnabled = true;
+if (!config.discordBotToken) {
+    console.log(chalk.red("[" + symbols.warn + "] No discord bot token detected, starting in server only mode."));
+    discordEnabled = false;
+}
 
 console.log(chalk.green("[" + symbols.check + "] Dependencies and modules loaded!"));
 
@@ -29,15 +35,37 @@ var server = http.createServer()
 console.log(chalk.yellow("[" + symbols.wait + "] Binding websocket to server..."));
 const wss = new webSocket.Server({ server })
 
-wss.on('connection', function connection(wsClient){
-    console.log('connection')
-    wsClient.on('message', function incoming(message){
-        console.log(message)
-    })
-})
+// Functions used 
+
+const charCodeToString = function(data) {
+
+};
+
+//
+wss.on('connection', function connection(client){
+    console.log(chalk.yellow("[" + symbols.wait + "] Connection incoming..."));
+    clientData = [];
+    client.on('ping', function(data) {
+        var decodedData = JSON.parse()
+        clientData[client] = {
+            webSocket : client,
+            pingInterval : null,
+            data : decodedData,
+        }
+    });
+    client.ping();
+
+    var ping = setInterval(function() {
+        client.ping();
+    }, 1000);
+    
+    client.on('message', function incoming(message) {
+        console.log(message);
+    });
+});
 
 server.listen(config.connectionSettings.port, config.connectionSettings.ip, () => {
     console.log(chalk.green("[" + symbols.check + `] Successfully started local HTTP server, server running on ${config.connectionSettings.ip}:${config.connectionSettings.port}`));
-})
+});
 
-console.log(chalk.green("[" + symbols.check + "] Game Cross Chat version v" + config.version + " loaded!"))
+console.log(chalk.green("[" + symbols.check + "] Game Cross Chat version v" + config.version + " loaded!"));
